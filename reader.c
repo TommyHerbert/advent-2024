@@ -1,29 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int LINE_LENGTH = 15;
+struct inputDetails {
+    char *inputFilename;
+    int lengthOfEntries;
+    int spaceBetweenEntries;
+    int linesInFile;
+};
 
 int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *) value2;
 }
 
-int totalDifference(char *inputFilename) {
+int totalDifference(struct inputDetails details) {
     FILE *inputFile;
-    inputFile = fopen(inputFilename, "r");
-    char buffer[LINE_LENGTH];
-    int leftColumn[1000];
-    int rightColumn[1000];
+    inputFile = fopen(details.inputFilename, "r");
+
+    // allow an extra character for the newline and another for the end of the buffer
+    int lineLength = 2 * details.lengthOfEntries + details.spaceBetweenEntries + 2;
+
+    char buffer[lineLength];
+    int leftColumn[details.linesInFile];
+    int rightColumn[details.linesInFile];
     int leftCounter = 0;
     int rightCounter = 0;
-    while(fgets(buffer, 15, inputFile)) {
+    int rightColumnOffset = details.lengthOfEntries + details.spaceBetweenEntries;
+    while(fgets(buffer, lineLength, inputFile)) {
         leftColumn[leftCounter++] = atoi(buffer);
-        rightColumn[rightCounter++] = atoi(buffer + 8);
+        rightColumn[rightCounter++] = atoi(buffer + rightColumnOffset);
     }
     fclose(inputFile);
 
     qsort(leftColumn, leftCounter, sizeof(int), compare);
     qsort(rightColumn, rightCounter, sizeof(int), compare);
-
     int total = 0;
     for (int i = 0; i < leftCounter; ++i) {
         total += abs(leftColumn[i] - rightColumn[i]);
@@ -32,7 +41,8 @@ int totalDifference(char *inputFilename) {
 }
 
 void test(void) {
-    if (totalDifference("input.txt") == 2000468) printf("test passed\n");
+    struct inputDetails details = {"input.txt", 5, 3, 1000};
+    if (totalDifference(details) == 2000468) printf("test passed\n");
     else printf("test failed\n");
 }
 
