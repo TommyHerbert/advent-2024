@@ -40,26 +40,49 @@ int totalDifference(struct inputDetails details) {
     return total;
 }
 
-int testExample() {
+int similarity(struct inputDetails details) {
+    return 0;
+}
+
+int testDistanceExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
     if (totalDifference(details) == 11) return 1;
     else {
-        printf("failed test: example.txt\n");
+        printf("failed test: example.txt distance\n");
         return 0;
     }
 }
 
-int testInput() {
+int testDistanceInput() {
     struct inputDetails details = {"input01.txt", 5, 3, 1000};
     if (totalDifference(details) == 2000468) return 1;
     else {
-        printf("failed test: input.txt\n");
+        printf("failed test: input.txt distance\n");
         return 0;
     }
 }
 
+int testSimilarityExample() {
+    struct inputDetails details = {"example01.txt", 1, 3, 6};
+    if (similarity(details) == 31) return 1;
+    else {
+        printf("failed test: example.txt similarity\n");
+        return 0;
+    }
+}
+
+int testSimilarityInput() {
+    struct inputDetails details = {"input01.txt", 5, 3, 1000};
+    printf("similarity score for input.txt: %d", similarity(details));
+}
+
 void testAll(void) {
-    if (testExample() && testInput()) printf("all tests succeeded\n");
+    if (
+        testDistanceExample() &&
+        testDistanceInput() &&
+        testSimilarityExample() &&
+        testSimilarityInput()
+    ) printf("all tests succeeded\n");
 }
 
 int main(void) {
