@@ -41,7 +41,7 @@ int totalDifference(struct inputDetails details) {
 }
 
 int testExample() {
-    struct inputDetails details = {"example.txt", 1, 3, 6};
+    struct inputDetails details = {"example01-1.txt", 1, 3, 6};
     if (totalDifference(details) == 11) return 1;
     else {
         printf("failed test: example.txt\n");
@@ -50,7 +50,7 @@ int testExample() {
 }
 
 int testInput() {
-    struct inputDetails details = {"input.txt", 5, 3, 1000};
+    struct inputDetails details = {"input01-1.txt", 5, 3, 1000};
     if (totalDifference(details) == 2000468) return 1;
     else {
         printf("failed test: input.txt\n");
