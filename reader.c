@@ -5,9 +5,9 @@ int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *) value2;
 }
 
-int totalDifference(void) {
+int totalDifference(char *inputFilename) {
     FILE *inputFile;
-    inputFile = fopen("input.txt", "r");
+    inputFile = fopen(inputFilename, "r");
     char buffer[15];
     int leftColumn[1000];
     int rightColumn[1000];
@@ -30,7 +30,7 @@ int totalDifference(void) {
 }
 
 void test(void) {
-    if (totalDifference() == 2000468) printf("test passed\n");
+    if (totalDifference("input.txt") == 2000468) printf("test passed\n");
     else printf("test failed\n");
 }
 
