@@ -40,14 +40,30 @@ int totalDifference(struct inputDetails details) {
     return total;
 }
 
-void test(void) {
+int testExample() {
+    struct inputDetails details = {"example.txt", 1, 3, 6};
+    if (totalDifference(details) == 11) return 1;
+    else {
+        printf("failed test: example.txt\n");
+        return 0;
+    }
+}
+
+int testInput() {
     struct inputDetails details = {"input.txt", 5, 3, 1000};
-    if (totalDifference(details) == 2000468) printf("test passed\n");
-    else printf("test failed\n");
+    if (totalDifference(details) == 2000468) return 1;
+    else {
+        printf("failed test: input.txt\n");
+        return 0;
+    }
+}
+
+void testAll(void) {
+    if (testExample() && testInput()) printf("all tests succeeded\n");
 }
 
 int main(void) {
-    test();
+    testAll();
     return 0;
 }
 
