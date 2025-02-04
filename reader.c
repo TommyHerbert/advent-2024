@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const int LINE_LENGTH = 15;
+
 int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *) value2;
 }
@@ -8,7 +10,7 @@ int compare(const void *value1, const void *value2) {
 int totalDifference(char *inputFilename) {
     FILE *inputFile;
     inputFile = fopen(inputFilename, "r");
-    char buffer[15];
+    char buffer[LINE_LENGTH];
     int leftColumn[1000];
     int rightColumn[1000];
     int leftCounter = 0;
