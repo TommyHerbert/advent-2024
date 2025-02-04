@@ -12,7 +12,7 @@ int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *) value2;
 }
 
-int totalDifference(struct inputDetails details) {
+int distance(struct inputDetails details) {
     FILE *inputFile;
     inputFile = fopen(details.inputFilename, "r");
 
@@ -46,7 +46,7 @@ int similarity(struct inputDetails details) {
 
 int testDistanceExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
-    if (totalDifference(details) == 11) return 1;
+    if (distance(details) == 11) return 1;
     else {
         printf("failed test: example.txt distance\n");
         return 0;
@@ -55,7 +55,7 @@ int testDistanceExample() {
 
 int testDistanceInput() {
     struct inputDetails details = {"input01.txt", 5, 3, 1000};
-    if (totalDifference(details) == 2000468) return 1;
+    if (distance(details) == 2000468) return 1;
     else {
         printf("failed test: input.txt distance\n");
         return 0;
