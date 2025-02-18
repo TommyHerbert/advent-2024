@@ -1,22 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct inputDetails {
-    char *inputFilename;
-    int lengthOfEntries;
-    int spaceBetweenEntries;
-    int linesInFile;
-};
-
-struct counterArray {
-    int *array;
-    int elements;
-};
-
-struct data {
-    struct counterArray *column1;
-    struct counterArray *column2;
-};
+#include "types.h"
 
 void read(struct inputDetails *input, struct data *output) {
     FILE *inputFile;
