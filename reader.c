@@ -1,4 +1,6 @@
 #include "reader.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void read(struct inputDetails *input, struct data *output) {
     FILE *inputFile;
