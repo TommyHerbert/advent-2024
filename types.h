@@ -1,3 +1,6 @@
+#ifndef TYPES_H_INCLUDED
+#define TYPES_H_INCLUDED
+
 struct inputDetails {
     char *inputFilename;
     int lengthOfEntries;
@@ -14,4 +17,6 @@ struct data {
     struct counterArray *column1;
     struct counterArray *column2;
 };
+
+#endif
 
