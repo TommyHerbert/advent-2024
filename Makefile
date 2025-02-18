@@ -1,15 +1,18 @@
-all: reader distance similarity test
+all: parse reader distance similarity test
+
+parse:
+	gcc -c parse.c
 
 reader:
 	gcc -c reader.c
 
-distance: reader
+distance: parse reader
 	gcc -c distance.c distanceLauncher.c
-	gcc -o distance reader.o distance.o distanceLauncher.o
+	gcc -o distance parse.o reader.o distance.o distanceLauncher.o
 
-similarity: reader
+similarity: parse reader
 	gcc -c similarity.c similarityLauncher.c
-	gcc -o similarity reader.o similarity.o similarityLauncher.o
+	gcc -o similarity parse.o reader.o similarity.o similarityLauncher.o
 
 test: distance similarity
 	gcc -c test.c
