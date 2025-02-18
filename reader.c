@@ -9,7 +9,7 @@ struct inputDetails {
 };
 
 int compare(const void *value1, const void *value2) {
-    return *(const int *)value1 - *(const int *) value2;
+    return *(const int *)value1 - *(const int *)value2;
 }
 
 int distance(struct inputDetails details) {
