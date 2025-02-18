@@ -38,7 +38,7 @@ int distance(struct inputDetails *input) {
     return total;
 }
 
-int similarity(struct inputDetails *details) {
+int similarity(struct inputDetails *input) {
     return 0;
 }
 
