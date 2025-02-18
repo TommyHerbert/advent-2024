@@ -8,45 +8,59 @@ struct inputDetails {
     int linesInFile;
 };
 
+struct counterArray {
+    int *array;
+    int elements;
+};
+
+struct data {
+    struct counterArray *column1;
+    struct counterArray *column2;
+};
+
+void read(struct inputDetails *input, struct data *output) {
+    FILE *inputFile;
+    inputFile = fopen(input->inputFilename, "r");
+
+    // allow an extra character for the newline and another for the end of the buffer
+    int lineLength = 2 * input->lengthOfEntries + input->spaceBetweenEntries + 2;
+
+    char buffer[lineLength];
+    int rightColumnOffset = input->lengthOfEntries + input->spaceBetweenEntries;
+    while(fgets(buffer, lineLength, inputFile)) {
+        output->column1->array[output->column1->elements++] = atoi(buffer);
+        output->column2->array[output->column2->elements++] = atoi(buffer + rightColumnOffset);
+    }
+    fclose(inputFile);
+}
+
 int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *)value2;
 }
 
-int distance(struct inputDetails details) {
-    FILE *inputFile;
-    inputFile = fopen(details.inputFilename, "r");
-
-    // allow an extra character for the newline and another for the end of the buffer
-    int lineLength = 2 * details.lengthOfEntries + details.spaceBetweenEntries + 2;
-
-    char buffer[lineLength];
-    int leftColumn[details.linesInFile];
-    int rightColumn[details.linesInFile];
-    int leftCounter = 0;
-    int rightCounter = 0;
-    int rightColumnOffset = details.lengthOfEntries + details.spaceBetweenEntries;
-    while(fgets(buffer, lineLength, inputFile)) {
-        leftColumn[leftCounter++] = atoi(buffer);
-        rightColumn[rightCounter++] = atoi(buffer + rightColumnOffset);
-    }
-    fclose(inputFile);
-
-    qsort(leftColumn, leftCounter, sizeof(int), compare);
-    qsort(rightColumn, rightCounter, sizeof(int), compare);
+int distance(struct inputDetails *input) {
+    int column1[input->linesInFile];
+    int column2[input->linesInFile];
+    struct counterArray counterArray1 = {column1, 0};
+    struct counterArray counterArray2 = {column2, 0};
+    struct data output = {&counterArray1, &counterArray2};
+    read(input, &output);
+    qsort(column1, counterArray1.elements, sizeof(int), compare);
+    qsort(column2, counterArray2.elements, sizeof(int), compare);
     int total = 0;
-    for (int i = 0; i < leftCounter; ++i) {
-        total += abs(leftColumn[i] - rightColumn[i]);
+    for (int i = 0; i < counterArray1.elements; ++i) {
+        total += abs(column1[i] - column2[i]);
     }
     return total;
 }
 
-int similarity(struct inputDetails details) {
+int similarity(struct inputDetails *details) {
     return 0;
 }
 
 int testDistanceExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
-    if (distance(details) == 11) return 1;
+    if (distance(&details) == 11) return 1;
     else {
         printf("failed test: example.txt distance\n");
         return 0;
@@ -55,7 +69,7 @@ int testDistanceExample() {
 
 int testDistanceInput() {
     struct inputDetails details = {"input01.txt", 5, 3, 1000};
-    if (distance(details) == 2000468) return 1;
+    if (distance(&details) == 2000468) return 1;
     else {
         printf("failed test: input.txt distance\n");
         return 0;
@@ -64,7 +78,7 @@ int testDistanceInput() {
 
 int testSimilarityExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
-    if (similarity(details) == 31) return 1;
+    if (similarity(&details) == 31) return 1;
     else {
         printf("failed test: example.txt similarity\n");
         return 0;
@@ -73,7 +87,7 @@ int testSimilarityExample() {
 
 int testSimilarityInput() {
     struct inputDetails details = {"input01.txt", 5, 3, 1000};
-    printf("similarity score for input.txt: %d", similarity(details));
+    printf("similarity score for input.txt: %d", similarity(&details));
 }
 
 void testAll(void) {
