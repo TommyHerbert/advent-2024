@@ -4,7 +4,7 @@
 
 void read(struct inputDetails *input, struct data *output) {
     FILE *inputFile;
-    inputFile = fopen(input->inputFilename, "r");
+    inputFile = fopen(input->filename, "r");
 
     // allow an extra character for the newline and another for the end of the buffer
     int lineLength = 2 * input->lengthOfEntries + input->spaceBetweenEntries + 2;
