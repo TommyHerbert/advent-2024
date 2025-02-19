@@ -1,4 +1,4 @@
-#include "types.h"
+#include "reader.h"
 
 int distance(struct inputDetails *input);
 
