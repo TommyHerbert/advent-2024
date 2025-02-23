@@ -4,7 +4,7 @@
 struct mapEntry {
     int key;
     int value;
-}
+};
 
 int similarity(struct inputDetails *input) {
     int column1[input->linesInFile];
@@ -15,19 +15,20 @@ int similarity(struct inputDetails *input) {
     read(input, &output);
     struct mapEntry frequencies[counterArray2.elements];
     for (int i = 0; i < counterArray2.elements; ++i) {
-        frequencies[i] = {0, 0};
+        struct mapEntry entry = {0, 0};
+        frequencies[i] = entry;
     }
     for (int i = 0; i < counterArray2.elements; ++i) {
         int mapMarker = 0;
         while (mapMarker < counterArray2.elements && frequencies[mapMarker].key != column2[i] && frequencies[mapMarker].key != 0) {
             mapMarker++;
         }
-        struct mapEntry frequency = freqencies[mapMarker];
+        struct mapEntry frequency = frequencies[mapMarker];
         frequency.key = column2[i];
         frequency.value += 1;
         frequencies[mapMarker] = frequency;
     }
-    total = 0
+    int total = 0;
     for (int i = 0; i < counterArray1.elements; ++i) {
         int location = column1[i];
         int mapMarker = 0;
