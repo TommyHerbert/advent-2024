@@ -22,9 +22,10 @@ int testDistanceInput() {
 
 int testSimilarityExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
-    if (similarity(&details) == 31) return 1;
+    int output = similarity(&details);
+    if (output == 31) return 1;
     else {
-        printf("failed test: example.txt similarity\n");
+        printf("failed test: example.txt similarity returned %d\n", output);
         return 0;
     }
 }
