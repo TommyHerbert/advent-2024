@@ -4,9 +4,10 @@
 
 int testDistanceExample() {
     struct inputDetails details = {"example01.txt", 1, 3, 6};
-    if (distance(&details) == 11) return 1;
+    int output = distance(&details);
+    if (output == 11) return 1;
     else {
-        printf("failed test: example.txt distance\n");
+        printf("failed test: example.txt distance returned %d\n", output);
         return 0;
     }
 }
