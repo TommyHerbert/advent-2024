@@ -11,8 +11,8 @@ distance: args file
 	gcc -o distance args.o file.o distance.o distance_launcher.o
 
 similarity: args file
-	gcc -c similarity.c similarityLauncher.c
-	gcc -o similarity args.o file.o similarity.o similarityLauncher.o
+	gcc -c similarity.c similarity_launcher.c
+	gcc -o similarity args.o file.o similarity.o similarity_launcher.o
 
 test: distance similarity
 	gcc -c test.c
