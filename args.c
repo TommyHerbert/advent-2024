@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "args.h"
 #include <stdlib.h>
 
 void parse(int argc, char **argv, struct inputDetails *details) {

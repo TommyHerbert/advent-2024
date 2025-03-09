@@ -1,5 +1,5 @@
 #include "similarity.h"
-#include "parse.h"
+#include "args.h"
 #include <stdio.h>
 
 int main(int argc, char **argv) {
