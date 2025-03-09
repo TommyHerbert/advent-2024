@@ -2,7 +2,7 @@
 #define READER
 
 struct inputDetails {
-    char *filename;
+    const char *filename;
     int lengthOfEntries;
     int spaceBetweenEntries;
     int linesInFile;

@@ -1,9 +1,10 @@
 #include "distance.h"
 #include "similarity.h"
+#include "paths.h"
 #include <stdio.h>
 
 int testDistanceExample() {
-    struct inputDetails details = {"data/example01.txt", 1, 3, 6};
+    struct inputDetails details = {EXAMPLE01, 1, 3, 6};
     int output = distance(&details);
     if (output == 11) return 1;
     else {
@@ -13,7 +14,7 @@ int testDistanceExample() {
 }
 
 int testDistanceInput() {
-    struct inputDetails details = {"data/input01.txt", 5, 3, 1000};
+    struct inputDetails details = {INPUT01, 5, 3, 1000};
     if (distance(&details) == 2000468) return 1;
     else {
         printf("failed test: input.txt distance\n");
@@ -22,7 +23,7 @@ int testDistanceInput() {
 }
 
 int testSimilarityExample() {
-    struct inputDetails details = {"data/example01.txt", 1, 3, 6};
+    struct inputDetails details = {EXAMPLE01, 1, 3, 6};
     int output = similarity(&details);
     if (output == 31) return 1;
     else {
