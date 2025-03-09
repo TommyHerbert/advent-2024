@@ -1,5 +1,5 @@
 #include "similarity.h"
-#include "reader.h"
+#include "file.h"
 
 struct mapEntry {
     int key;

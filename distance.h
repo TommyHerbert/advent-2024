@@ -1,4 +1,4 @@
-#include "reader.h"
+#include "file.h"
 
 int distance(struct inputDetails *input);
 

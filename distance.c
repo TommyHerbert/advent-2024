@@ -1,6 +1,6 @@
 #include "distance.h"
 #include <stdlib.h>
-#include "reader.h"
+#include "file.h"
 
 int compare(const void *value1, const void *value2) {
     return *(const int *)value1 - *(const int *)value2;
