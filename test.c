@@ -32,16 +32,21 @@ int testSimilarityExample() {
     }
 }
 
-void testAll(void) {
+int testAll(void) {
     if (
         testDistanceExample() &&
         testDistanceInput() &&
         testSimilarityExample()
-    ) printf("all tests succeeded\n");
+    ) {
+        printf("all tests succeeded\n");
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }
 
 int main(void) {
-    testAll();
-    return 0;
+    return testAll();
 }
 
