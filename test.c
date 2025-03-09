@@ -15,9 +15,10 @@ int testDistanceExample() {
 
 int testDistanceInput() {
     struct inputDetails details = {INPUT01, 5, 3, 1000};
-    if (distance(&details) == 2000468) return 1;
+    int output = distance(&details);
+    if (output == 2000468) return 1;
     else {
-        printf("failed test: input.txt distance\n");
+        printf("failed test: input.txt distance returned %d\n", output);
         return 0;
     }
 }
@@ -32,11 +33,22 @@ int testSimilarityExample() {
     }
 }
 
+int testSimilarityInput() {
+    struct inputDetails details = {INPUT01, 5, 3, 1000};
+    int output = similarity(&details);
+    if (output == 18567089) return 1;
+    else {
+        printf("failed test: input.txt similarity returned %d\n", output);
+        return 0;
+    }
+}
+
 int testAll(void) {
     if (
         testDistanceExample() &&
         testDistanceInput() &&
-        testSimilarityExample()
+        testSimilarityExample() &&
+        testSimilarityInput() 
     ) {
         printf("all tests succeeded\n");
         return 1;
