@@ -7,8 +7,8 @@ file:
 	gcc -c file.c
 
 distance: args file
-	gcc -c distance.c distanceLauncher.c
-	gcc -o distance args.o file.o distance.o distanceLauncher.o
+	gcc -c distance.c distance_launcher.c
+	gcc -o distance args.o file.o distance.o distance_launcher.o
 
 similarity: args file
 	gcc -c similarity.c similarityLauncher.c
