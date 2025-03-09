@@ -16,4 +16,4 @@ similarity: parse reader
 
 test: distance similarity
 	gcc -c test.c
-	gcc -o test distance.o similarity.o test.o
+	gcc -o test parse.o reader.o distance.o similarity.o test.o
