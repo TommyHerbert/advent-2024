@@ -17,3 +17,7 @@ similarity: args file
 test: distance similarity
 	gcc -c test.c
 	gcc -o test args.o file.o distance.o similarity.o test.o
+
+clean:
+	rm *.o distance similarity test
+
